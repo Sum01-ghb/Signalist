@@ -20,7 +20,13 @@ export const sendWelcomeEmail = async ({
   );
 
   const mailOptions = {
-    from: `"Signalist <signalist@developers.pro"`,
+   const mailOptions = {
+     from: `"Signalist" <signalist@developers.pro>`,
+     to: email,
+     subject: "Welcome to Signalist - your Stock Market toolkit is ready!",
+     text: "Thanks for joining Signalist",
+     html: htmlTemplate,
+   };
     to: email,
     subject: "Welcome to Signalist - your Stock Market toolkit is ready!",
     text: "Thanks for joining Signalist",
