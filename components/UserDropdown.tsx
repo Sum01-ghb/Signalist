@@ -13,6 +13,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { LogOut } from "lucide-react";
 import NavItems from "./NavItems";
 import { signOut } from "@/lib/actions/auth.actions";
+import { getProfilePictureUrl } from "@/lib/utils";
 
 const UserDropdown = ({
   user,
@@ -27,6 +28,8 @@ const UserDropdown = ({
     router.push("/sign-in");
   };
 
+  const profilePictureUrl = getProfilePictureUrl(user.email, user.name);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -35,7 +38,7 @@ const UserDropdown = ({
           className="flex items-center gap-3 text-gray-400 hover:text-yellow-500 cursor-pointer"
         >
           <Avatar className="w-8 h-8">
-            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarImage src={profilePictureUrl} />
             <AvatarFallback className="bg-yellow-500 text-yellow-900 text-sm font-bold">
               {user.name[0]}
             </AvatarFallback>
@@ -52,7 +55,7 @@ const UserDropdown = ({
         <DropdownMenuLabel>
           <div className="flex relative items-center gap-3 py-2">
             <Avatar className="w-10 h-10">
-              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarImage src={profilePictureUrl} />
               <AvatarFallback className="bg-yellow-500 text-yellow-900 text-sm font-bold">
                 {user.name[0]}
               </AvatarFallback>

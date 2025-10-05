@@ -313,6 +313,15 @@
   .table-row {
     @apply border-b cursor-pointer text-gray-100 border-gray-600 hover:bg-gray-700/50 transition-colors;
   }
+  .table-row td {
+    @apply py-3 px-4;
+  }
+  .line-clamp-2 {
+    @apply overflow-hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
   .table-cell {
     @apply font-medium text-base;
   }
