@@ -13,11 +13,13 @@ export function getProfilePictureUrl(email: string, name: string): string {
     .digest("hex");
   const gravatarUrl = `https://www.gravatar.com/avatar/${emailHash}?d=identicon&s=200`;
 
-  if (email.includes("@gmail.com")) {
-    return gravatarUrl;
-  }
-
-  return gravatarUrl;
+export function getProfilePictureUrl(email: string, name: string): string {
+  const emailHash = crypto
+    .createHash("md5")
+    .update(email.toLowerCase().trim())
+    .digest("hex");
+  return `https://www.gravatar.com/avatar/${emailHash}?d=identicon&s=200`;
+}
 }
 
 export const formatTimeAgo = (timestamp: number) => {
