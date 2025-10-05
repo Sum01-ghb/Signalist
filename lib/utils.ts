@@ -11,15 +11,7 @@ export function getProfilePictureUrl(email: string, name: string): string {
     .createHash("md5")
     .update(email.toLowerCase().trim())
     .digest("hex");
-  const gravatarUrl = `https://www.gravatar.com/avatar/${emailHash}?d=identicon&s=200`;
-
-export function getProfilePictureUrl(email: string, name: string): string {
-  const emailHash = crypto
-    .createHash("md5")
-    .update(email.toLowerCase().trim())
-    .digest("hex");
   return `https://www.gravatar.com/avatar/${emailHash}?d=identicon&s=200`;
-}
 }
 
 export const formatTimeAgo = (timestamp: number) => {
