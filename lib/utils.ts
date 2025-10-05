@@ -1,13 +1,22 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import crypto from "crypto";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export function getProfilePictureUrl(email: string, name: string): string {
+  const emailHash = crypto
+    .createHash("md5")
+    .update(email.toLowerCase().trim())
+    .digest("hex");
+  return `https://www.gravatar.com/avatar/${emailHash}?d=identicon&s=200`;
+}
+
 export const formatTimeAgo = (timestamp: number) => {
   const now = Date.now();
-  const diffInMs = now - timestamp * 1000; // Convert to milliseconds
+  const diffInMs = now - timestamp * 1000;
   const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
   const diffInMinutes = Math.floor(diffInMs / (1000 * 60));
 

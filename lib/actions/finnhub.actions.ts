@@ -26,6 +26,25 @@ async function fetchJSON<T>(
 
 export { fetchJSON };
 
+export async function getCompanyName(symbol: string): Promise<string> {
+  try {
+    const token = process.env.FINNHUB_API_KEY ?? NEXT_PUBLIC_FINNHUB_API_KEY;
+    if (!token) {
+      return symbol.toUpperCase();
+    }
+
+    const url = `${FINNHUB_BASE_URL}/stock/profile2?symbol=${encodeURIComponent(
+      symbol
+    )}&token=${token}`;
+
+    const profile = await fetchJSON<any>(url, 3600);
+    return profile?.name || symbol.toUpperCase();
+  } catch (error) {
+    console.error("Error fetching company name for", symbol, error);
+    return symbol.toUpperCase();
+  }
+}
+
 export async function getNews(
   symbols?: string[]
 ): Promise<MarketNewsArticle[]> {
