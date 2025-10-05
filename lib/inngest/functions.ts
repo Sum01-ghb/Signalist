@@ -79,7 +79,10 @@ export const sendDailyNewsSummary = inngest.createFunction(
       return perUser;
     });
 
-    const userNewsSummaries: { user: User; newsContent: string | null }[] = [];
+    const userNewsSummaries: {
+      user: UserForNewsEmail;
+      newsContent: string | null;
+    }[] = [];
     for (const { user, articles } of results) {
       try {
         const prompt = NEWS_SUMMARY_EMAIL_PROMPT.replace(
